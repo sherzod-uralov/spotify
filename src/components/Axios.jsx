@@ -5,6 +5,7 @@ const Axios = () => {
     <div>
         <h1>hello world</h1>
         <h2>sherzod</h2>
+        <img src="" alt="" />1
     </div>
   )
 }
