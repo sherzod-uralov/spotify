@@ -15,9 +15,10 @@ const Axios = () => {
 
   return (
     <div className="container">
+      <div className='card'>
       {
-        countries.map(country => (
-          <div className="card">
+        countries.map((country,i) => (
+          <div  key={i}>
       <img src={country.flags.png} alt={country.name.common} />
       <h2>{country.name.common}</h2>
       <p>Population: {country.population}</p>
@@ -25,6 +26,7 @@ const Axios = () => {
       </div>
         ))
       }
+      </div>
     </div>
   );
 };
