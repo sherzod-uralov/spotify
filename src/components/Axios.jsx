@@ -1,29 +1,32 @@
-import axios from 'axios'
-import React, { useState } from 'react'
-import { useEffect } from 'react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+
 
 const Axios = () => {
-  const [state,setState] = useState() 
-  function fetchData() {
-    axios.get('https://restcountries.com/v3.1/all').then(e => {
-      setState(e.data)
-    }).catch(err => console.log(err))
-  }
+  const [countries, setCountries] = useState([]);
+
   useEffect(() => {
-    fetchData()
-},[])
-console.log(state);
+    axios.get('https://restcountries.com/v3.1/all')
+      .then(response => {
+        setCountries(response.data);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
   return (
-    <div>
+    <div className="container">
       {
-        state.map(e => (
-          <div key={e.common.name}>
-            <img src={e.flags.png} alt="" />
-          </div>
+        countries.map(country => (
+          <div className="card">
+      <img src={country.flags.png} alt={country.name.common} />
+      <h2>{country.name.common}</h2>
+      <p>Population: {country.population}</p>
+      <p>Region: {country.region}</p>
+      </div>
         ))
       }
     </div>
-  )
-}
+  );
+};
 
-export default Axios
+export default Axios;
