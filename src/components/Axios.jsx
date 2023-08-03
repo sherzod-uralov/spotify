@@ -1,14 +1,27 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
+import { useEffect } from 'react';
 
 const Axios = () => {
+  const [state,setState] = useState() 
+  function fetchData() {
+    axios.get('https://restcountries.com/v3.1/all').then(e => {
+      setState(e)
+    }).catch(err => console.log(err))
+  }
+  useEffect(() => {
+    fetchData()
+},[])
+state.map(e => {
+  console.log(e);
+})
   return (
     <div>
-        <h1>hello world</h1>
-        <h2>sherzod</h2>
-        <h2>salom</h2>
-        <img src="" alt="" />1 
-        <h1>Qodir aaaaa Ali aaaaaafafasf</h1>
-        <h1>yunusobod </h1>
+      {/* {state?.data?.map(e => {
+        <div className='cards'>
+          <img src={e.flaags.png} alt="" />
+        </div>
+      })}       */}
     </div>
   )
 }
